@@ -10,7 +10,7 @@ class App extends StatelessWidget {
       title: 'Flutter Wordle Game',
       debugShowCheckedModeBanner: false,
       theme: ThemeData.dark().copyWith(scaffoldBackgroundColor: Colors.grey[900]),
-      home: WordleScreen(),
+      home: const WordleScreen(),
     );
   }
 }

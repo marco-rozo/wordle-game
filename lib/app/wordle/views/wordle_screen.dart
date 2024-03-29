@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
-import 'package:wordle_app/app/core/consts/colors.dart';
+import 'package:wordle_app/app/core/widgets/custom_snackbar.dart';
 import 'package:wordle_app/app/wordle/data/word_list.dart';
 import 'package:wordle_app/app/wordle/wordle.dart';
 
@@ -146,39 +146,19 @@ class _WordleScreenState extends State<WordleScreen> {
   void _checkIfWinOrLoss() {
     if (_currentWord!.wordString == _solution.wordString) {
       _gameStatus = GameStatus.won;
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          dismissDirection: DismissDirection.none,
-          duration: const Duration(days: 1),
-          backgroundColor: CustomColors.green538D4E,
-          content: const Text(
-            'You won!',
-            style: TextStyle(color: Colors.white),
-          ),
-          action: SnackBarAction(
-            onPressed: _restart,
-            textColor: Colors.white,
-            label: 'Play again',
-          ),
-        ),
+      CustomSnackBar.show(
+        snackType: SnackBarType.succes,
+        context: context,
+        description: 'You won!',
+        action: _restart,
       );
-    } else if (_currentWordIndex + 1 >= _board.length - 1) {
+    } else if (_currentWordIndex + 1 >= _board.length) {
       _gameStatus = GameStatus.lost;
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          dismissDirection: DismissDirection.none,
-          duration: const Duration(days: 1),
-          backgroundColor: CustomColors.green538D4E,
-          content: Text(
-            'You lost! Solution: ${_solution.wordString}',
-            style: const TextStyle(color: Colors.white),
-          ),
-          action: SnackBarAction(
-            onPressed: _restart,
-            textColor: Colors.white,
-            label: 'Play again',
-          ),
-        ),
+      CustomSnackBar.show(
+        snackType: SnackBarType.error,
+        context: context,
+        description: 'You lost! Solution: ${_solution.wordString}',
+        action: _restart,
       );
     } else {
       _gameStatus = GameStatus.playing;
