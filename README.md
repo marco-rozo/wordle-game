@@ -25,7 +25,7 @@ Este é um jogo Wordle simples desenvolvido em Flutter, onde os jogadores tentam
 
 ### TODO
 
-- [ ] Game
+- [x] Game
 - [ ] Ranking
 - [ ] Compartilhamento
 - [ ] Help-me / Tutorial
